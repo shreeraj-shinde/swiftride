@@ -48,3 +48,51 @@ The request body must be a JSON object containing the following **required** fie
 }{
 "error": "An unexpected error occurred. Please try again later."
 }
+
+# `/users/login`
+
+## Description
+
+The `/users/login` endpoint allows existing users to authenticate and access protected resources within the system. By providing valid credentials, users receive an authentication token to maintain their session securely.
+
+## Request
+
+### Method
+
+`POST`
+
+### URL
+
+`/users/login`
+
+### Headers
+
+- `Content-Type: application/json`
+
+### Request Body
+
+The request body must be a JSON object containing the following **required** fields:
+
+- `email` (string): The user's registered email address.
+- `password` (string): The user's password.
+
+#### Example Request Body
+
+```json
+{
+  "email": "user@example.com",
+  "password": "SecurePassw0rd!"
+}
+
+{
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "userId": "abc123xyz"
+}{
+  "error": "Email and password are required"
+}{
+  "error": "Invalid email or password"
+}{
+  "error": "An unexpected error occurred. Please try again later."
+}
+```
