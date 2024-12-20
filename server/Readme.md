@@ -23,7 +23,7 @@ The `/users/register` endpoint allows new users to create an account in the syst
 The request body must be a JSON object containing the following **required** fields:
 
 - `email` (string): The user's email address. Must be a valid and unique email.
-- `fullName` (string): The user's full name.
+- `fullName` (object): The user's full name.
   - `firstName` (string): The user's First name.
   - `lastName` (string): The user's Last name.
 - `password` (string): The user's password. Must meet security requirements (e.g., minimum length, complexity).
@@ -33,7 +33,10 @@ The request body must be a JSON object containing the following **required** fie
 ```json
 {
   "email": "user@example.com",
-  "fullName": "John Doe",
+  "fullName": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
   "password": "SecurePassw0rd!"
 }
 ```
@@ -78,7 +81,7 @@ The request body must be a JSON object containing the following **required** fie
 
 #### Example Request Body
 
-```json
+````json
 {
   "email": "user@example.com",
   "password": "SecurePassw0rd!"
@@ -93,6 +96,55 @@ The request body must be a JSON object containing the following **required** fie
 }{
   "error": "Invalid email or password"
 }{
+  "error": "An unexpected error occurred. Please try again later."
+}
+
+
+
+# `/users/logout`
+
+## Description
+
+The `/users/logout` endpoint allows authenticated users to log out from the system. This will invalidate the user's current session token.
+
+## Request
+
+### Method
+
+`POST`
+
+### URL
+
+`/users/logout`
+
+### Headers
+
+- `Content-Type: application/json`
+- `Authorization`: Bearer token
+
+### Request Body
+
+No request body is required for this endpoint.
+
+## Response
+
+### Example Responses
+
+#### Success
+
+```json
+{
+  "message": "Logout successful"
+}
+````
+
+#### Errors
+
+```json
+{
+  "error": "Invalid token"
+}
+{
   "error": "An unexpected error occurred. Please try again later."
 }
 ```
